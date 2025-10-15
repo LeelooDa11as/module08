@@ -1,0 +1,92 @@
+1. std::array
+
+Fixed size, known at compile time.
+
+Internally: a static array (continuous block of memory).
+
+Size cannot change after creation.
+
+Fastest access: ✅ O(1) random access with [] or .at().
+
+No dynamic allocation — memory is on the stack.
+
+Example
+
+std::array<int, 5> arr = {1, 2, 3, 4, 5};
+
+
+Use it when:
+You know the size in advance and want something like a built-in array but safer and STL-compatible.
+
+2. std::vector
+
+Dynamic array — elements are stored in contiguous memory.
+
+Can resize automatically (it reallocates to grow).
+
+Fast random access ✅ [] in O(1) time.
+
+Inserting/removing at the end is O(1) (amortized).
+
+Inserting/removing in the middle or front is O(n) (requires shifting elements).
+
+Example
+
+std::vector<int> vec;
+vec.push_back(10);
+vec.push_back(20);
+
+
+Use it when:
+You need dynamic size and frequent access by index.
+
+3. std::list
+
+Doubly linked list — each element points to the next and previous ones.
+
+Memory is not contiguous.
+
+No random access ❌ (you must traverse to reach an element).
+
+Insertion and deletion anywhere (including front/middle) are O(1) if you already have an iterator.
+
+No reallocation issues — pointers and iterators remain valid even if the list changes.
+
+Example
+
+std::list<int> lst;
+lst.push_back(1);
+lst.push_front(0);
+
+
+Use it when:
+You insert/remove elements frequently in the middle, and random access isn’t needed.
+
+4. std::deque (Double-Ended Queue)
+
+Elements are stored in multiple blocks of contiguous memory (not one big block like vector).
+
+Supports fast insertion/removal at both ends: O(1) at front and back.
+
+Random access ✅ supported, but slightly slower than vector.
+
+Inserting/removing in the middle is O(n).
+
+Example
+
+std::deque<int> dq;
+dq.push_front(10);
+dq.push_back(20);
+
+
+Use it when:
+You need efficient push/pop from both front and back, and still want random access.
+
+⚖️ Summary Table
+Container	Memory layout	Size	Random Access	Insert/Erase Front	Insert/Erase Middle	Insert/Erase Back
+array	contiguous	fixed	✅ O(1)	❌	❌	❌
+vector	contiguous	dynamic	✅ O(1)	❌ O(n)	❌ O(n)	✅ O(1)*
+list	linked nodes	dynamic	❌	✅ O(1)	✅ O(1)	✅ O(1)
+deque	segmented contiguous blocks	dynamic	✅ O(1)	✅ O(1)	❌ O(n)	✅ O(1)
+
+* amortized O(1) — occasional reallocations happen.
