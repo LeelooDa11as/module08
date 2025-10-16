@@ -74,8 +74,8 @@ void	test_deque(void) {
 }
 
 int	main(void) {
-	//test_list();
-	//test_vector();
+	test_list();
+	test_vector();
 	test_deque();
 	return 0;
 }

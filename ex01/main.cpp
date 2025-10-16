@@ -70,7 +70,7 @@ void	test3(void)
 	std::cout << BLUE << "---------- Using different types of containers ----------\n" << RESET << std::endl;
 
 	Span	arr_test(12000);
-	std::array<int, 13000> big_boy;
+	std::vector<int> big_boy;
 
 	for (int i = 0; i < 13000; i++) {
 		big_boy[i] = rand();
